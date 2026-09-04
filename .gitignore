@@ -3,6 +3,7 @@
 
 #Git files:
 !.gitignore
+!.gitattributes
 !LICENSE
 !README.md
 
@@ -31,6 +32,8 @@
 #Scripts
 !_Fish_*.pex
 !_Fish_*.psc
+!_AC_*.pex
+!_AC_*.psc
 
 #Textures
 !textures/ArtOfTheCatch/*
