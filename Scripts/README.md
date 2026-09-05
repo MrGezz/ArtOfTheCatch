@@ -63,3 +63,17 @@ clean boot `Papyrus.0.log` contains **no `_AC_` line at all** — every script b
 
 Not verified: the minigame in play. That needs someone to load a save, equip the pole and
 fish.
+
+## Perk-tree controller stub
+
+`_AC_PerkNodeController_Fishing` (ACTI `02002341`) attaches `_Camp_PerkNodeControllerBehavior`,
+a Campfire-internal script name that Campfire dropped on 2016-01-28 (commit `85bfbea`, "Remove
+internal perk node script versions") for `CampPerkNodeControllerBehavior`. The record was added
+on 2015-08-30 (commit `a9a16b2`), after the 1.0.1 release, and never wired: its 27 properties
+still hold the values copied from Campfire's camping tree (`_Camp_PN_Camping_1Resourceful`,
+`CampingPerkPoints`, `_Camp_MainQuest` ...) under master index `02`, which in a plugin whose
+masters are only Skyrim.esm and Update.esm is this plugin itself, where none of them exist.
+Nothing places or references the activator (no REFR, no VMAD property, no script), so it is
+inert: Papyrus loads a base form's script only when a reference of it exists.
+`tools/scriptcoverage.py` lists it under "referenced but NOT found" for that reason, and it can
+stay listed. A fishing perk tree would be new content, not a port.
